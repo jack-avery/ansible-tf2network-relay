@@ -10,7 +10,6 @@ and is usually paired with a plugin for relaying from the server.
 The bot expects two environment variables:
 1. `DISCORD_TOKEN` - Your Discord bot token from your [developer portal](https://discord.com/developers/applications)
 2. `RCON_USERS` - Colon-delimited list of Discord user IDs to grant `rcon` access to
-> e.g. `97441955893477376:1178147836081217627`
 
 The bot also expects a `manifest.yml` defining the servers.
 This is usually generated using your Ansible variables and [this Python script](https://github.com/jack-avery/ansible-tf2network/blob/main/manifest.py),
@@ -32,7 +31,7 @@ version: '3'
 
 services:
   my-relay:
-    image: "jackavery/ansible-tf2network-relay"
+    image: "jackavery/ansible-tf2network-relay:latest"
     env:
       DISCORD_TOKEN: "mydiscordtoken"
       RCON_USERS: "97441955893477376:1178147836081217627"
