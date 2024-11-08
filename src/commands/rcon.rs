@@ -10,19 +10,23 @@ pub fn register() -> CreateCommand {
     CreateCommand::new("rcon")
         .description("Run a command on a server")
         .add_option(
-            CreateCommandOption::new(CommandOptionType::String, "server", "Internal name for the server")
-            .required(true)
+            CreateCommandOption::new(
+                CommandOptionType::String,
+                "server",
+                "Internal name for the server",
+            )
+            .required(true),
         )
         .add_option(
             CreateCommandOption::new(CommandOptionType::String, "command", "Command to run")
-            .required(true)
+                .required(true),
         )
 }
 
 pub async fn run(
     config: &Config,
     invoking_user: &User,
-    options: &[ResolvedOption<'_>]
+    options: &[ResolvedOption<'_>],
 ) -> Result<CreateEmbed, RelayBotError> {
     // handle perms
     if !config.rcon_users_ids().contains(&invoking_user.id.into()) {
@@ -31,13 +35,17 @@ pub async fn run(
 
     // get args
     let Some(ResolvedOption {
-        value: ResolvedValue::String(server), ..
-    }) = options.get(0) else {
+        value: ResolvedValue::String(server),
+        ..
+    }) = options.get(0)
+    else {
         return Err(RelayBotError::MissingParameter("server".to_string()));
     };
     let Some(ResolvedOption {
-        value: ResolvedValue::String(command), ..
-    }) = options.get(1) else {
+        value: ResolvedValue::String(command),
+        ..
+    }) = options.get(1)
+    else {
         return Err(RelayBotError::MissingParameter("command".to_string()));
     };
 
@@ -47,15 +55,19 @@ pub async fn run(
     };
 
     // issue command
-    println!("@{} invoking command on {}: {}", invoking_user.name, server, command);
+    println!(
+        "@{} invoking command on {}: {}",
+        invoking_user.name, server, command
+    );
     let mut client = Client::connect(&host.ip, &host.rcon_pass).await?;
     let response = client.command(command).await?;
     let response = match response.body().len() {
         0 => "*Command has no response.*",
-        _ => response.body()
+        _ => response.body(),
     };
 
     Ok(CreateEmbed::new()
         .description(response)
         .color(Color::BLURPLE))
 }
+

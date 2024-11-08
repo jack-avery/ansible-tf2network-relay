@@ -13,5 +13,6 @@ pub enum RelayBotError {
     ServerNonExist(String),
     /// [sourcon] error
     #[error("sourcon error: {0}")]
-    RconConnectFailed(#[from] sourcon::error::RconError)
+    RconConnectFailed(#[from] sourcon::error::RconError),
 }
+

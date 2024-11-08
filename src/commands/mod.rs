@@ -1,2 +1,2 @@
-pub mod servers;
 pub mod rcon;
+pub mod servers;

@@ -16,21 +16,19 @@ pub struct ServerConfig {
     /// Discord relay channel for the bot
     pub relay_channel: Option<u64>,
     /// Whether the server is STV enabled
-    pub stv_enabled: bool
+    pub stv_enabled: bool,
 }
 
 #[derive(Debug, Clone, Deserialize)]
 pub struct Manifest {
-    pub hosts: Vec<ServerConfig>
+    pub hosts: Vec<ServerConfig>,
 }
 
 pub fn load() -> Manifest {
     println!("loading manifest");
 
-    let cfg_bytes = std::fs::read("manifest.yml")
-        .expect("missing manifest.yml");
-    let cfg_str = std::str::from_utf8(&cfg_bytes)
-        .expect("failed to utf8decode config");
+    let cfg_bytes = std::fs::read("manifest.yml").expect("missing manifest.yml");
+    let cfg_str = std::str::from_utf8(&cfg_bytes).expect("failed to utf8decode config");
 
     serde_yaml::from_str(cfg_str).expect("failed to parse cfg")
 }

@@ -57,7 +57,7 @@ pub async fn init(manifest: &Manifest) {
     for host in manifest.hosts.iter() {
         server_info.insert(
             host.internal_name.clone(),
-            HostInfo::new(&host.ip, &host.rcon_pass, &host.hostname)
+            HostInfo::new(&host.ip, &host.rcon_pass, &host.hostname),
         );
     }
     std::mem::drop(server_info); // manually unlock
@@ -71,7 +71,7 @@ pub async fn init(manifest: &Manifest) {
                 match query_host(&host).await {
                     Ok(new_info) => {
                         new_server_info.insert(name, new_info);
-                    },
+                    }
                     Err(why) => eprintln!("failed to refresh {}: {why:?}", name),
                 }
             }
@@ -85,9 +85,7 @@ pub async fn init(manifest: &Manifest) {
     });
 }
 
-async fn query_host<'a>(
-    host: &HostInfo,
-) -> Result<HostInfo, Box<dyn std::error::Error + 'a>> {
+async fn query_host<'a>(host: &HostInfo) -> Result<HostInfo, Box<dyn std::error::Error + 'a>> {
     let info: ServerInfo = query(&host.ip).await?;
 
     Ok(HostInfo {
@@ -111,3 +109,4 @@ pub async fn get(host: &str) -> Option<HostInfo> {
 
     info.get(host).cloned()
 }
+
