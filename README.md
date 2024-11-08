@@ -38,7 +38,7 @@ services:
       DISCORD_TOKEN: "mydiscordtoken"
       RCON_USERS: "97441955893477376:1178147836081217627"
     volumes:
-      - /path/to/your/manifest.yml:/manifest.yml
+      - /path/to/your/manifest.yml:/manifest.yml:ro
 ```
 
 ## Building
