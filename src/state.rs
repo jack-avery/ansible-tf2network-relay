@@ -4,7 +4,7 @@ use std::time::Duration;
 
 use rsourcequery::info::{query, ServerInfo};
 
-use lazy_static::lazy_static;
+use once_cell::sync::Lazy;
 use std::sync::Arc;
 use tokio::sync::Mutex;
 
@@ -39,10 +39,9 @@ impl HostInfo {
     }
 }
 
-lazy_static! {
-    // cached host info
-    static ref HOST_INFO: Arc<Mutex<HashMap<String, HostInfo>>> = Arc::new(Mutex::new(HashMap::new()));
-}
+// cached host info
+static HOST_INFO: Lazy<Arc<Mutex<HashMap<String, HostInfo>>>> =
+    Lazy::new(|| Arc::new(Mutex::new(HashMap::new())));
 
 pub async fn init(manifest: &Manifest) {
     // parse STATE_REFRESH_RATE envvar
@@ -109,4 +108,3 @@ pub async fn get(host: &str) -> Option<HostInfo> {
 
     info.get(host).cloned()
 }
-

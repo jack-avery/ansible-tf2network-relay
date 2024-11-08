@@ -10,7 +10,7 @@ use config::Config;
 use error::RelayBotError;
 use manifest::{Manifest, ServerConfig};
 
-use lazy_static::lazy_static;
+use once_cell::sync::Lazy;
 use regex::Regex;
 use serenity::all::{
     async_trait, ChannelId, Color, Command, CreateEmbed, CreateInteractionResponse,
@@ -19,18 +19,17 @@ use serenity::all::{
 use serenity::prelude::*;
 use sourcon::client::Client as RconClient;
 
-lazy_static! {
-    static ref CONFIG: Config = config::load();
-    static ref MANIFEST: Manifest = manifest::load();
-    static ref RELAY_CHANNELS: HashMap<ChannelId, ServerConfig> =
-        manifest::channel_key_value(&MANIFEST);
-    static ref RE_DISCORD_MENTION: Regex =
-        Regex::new(r"<@d\+>").expect("failed to compile RE_DISCORD_MENTION");
-    static ref RE_DISCORD_CHANNEL: Regex =
-        Regex::new(r"<#\d+>").expect("failed to compile RE_DISCORD_CHANNEL");
-    static ref RE_DISCORD_EMOTE: Regex =
-        Regex::new(r"(<a?(:[a-zA-Z0-9_]+:)\d+>)").expect("failed to compile RE_DISCORD_EMOTE");
-}
+static CONFIG: Lazy<Config> = Lazy::new(|| config::load());
+static MANIFEST: Lazy<Manifest> = Lazy::new(|| manifest::load());
+static RELAY_CHANNELS: Lazy<HashMap<ChannelId, ServerConfig>> =
+    Lazy::new(|| manifest::channel_key_value(&MANIFEST));
+static RE_DISCORD_MENTION: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r"<@d\+>").expect("failed to compile RE_DISCORD_MENTION"));
+static RE_DISCORD_CHANNEL: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r"<#\d+>").expect("failed to compile RE_DISCORD_CHANNEL"));
+static RE_DISCORD_EMOTE: Lazy<Regex> = Lazy::new(|| {
+    Regex::new(r"(<a?(:[a-zA-Z0-9_]+:)\d+>)").expect("failed to compile RE_DISCORD_EMOTE")
+});
 
 struct Handler;
 
@@ -164,4 +163,3 @@ async fn main() {
         eprintln!("client error: {why:?}");
     }
 }
-
