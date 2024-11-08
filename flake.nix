@@ -18,11 +18,13 @@
       "x86_64-linux" = {
         crossSystemConfig = "x86_64-unknown-linux-musl";
         rustTarget = "x86_64-unknown-linux-musl";
+        imageTag = "x86_64";
       };
 
       "aarch64-linux" = {
         crossSystemConfig = "aarch64-unknown-linux-musl";
         rustTarget = "aarch64-unknown-linux-musl";
+        imageTag = "aarch64";
       };
     };
 
@@ -84,6 +86,7 @@
           pkgs = mkPkgs buildSystem null;
           pkgsCross = mkPkgs buildSystem targetSystem;
           rustTarget = buildTargets.${targetSystem}.rustTarget;
+          imageTag = buildTargets.${targetSystem}.imageTag;
 
           fenixPkgs = fenix.packages.${buildSystem};
 
@@ -106,7 +109,8 @@
         in {
           image = pkgs.dockerTools.buildImage {
             name = "jackavery/ansible-tf2network-relay";
-            tag = "latest";
+            tag = "latest-${imageTag}";
+            architecture = "${imageTag}";
             created = "now";
 
             copyToRoot = ["${packages.${buildSystem}.${targetSystem}.binary}/bin"];
