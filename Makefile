@@ -3,6 +3,7 @@
 all: build
 
 build:
+	cargo update
 	nix build ".#x86_64-linux.image"
 	docker load -i result
 	nix build ".#aarch64-linux.image"

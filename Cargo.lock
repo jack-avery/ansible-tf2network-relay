@@ -43,7 +43,7 @@ dependencies = [
 
 [[package]]
 name = "ansible-tf2network-relay"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "itertools",
  "once_cell",
@@ -389,9 +389,9 @@ dependencies = [
 
 [[package]]
 name = "fastrand"
-version = "2.1.1"
+version = "2.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e8c02a5121d4ea3eb16a80748c74f5549a5665e4c21333c6098f283870fbdea6"
+checksum = "486f806e73c5707928240ddc295403b1b93c96a02038563881c4a2fd84b81ac4"
 
 [[package]]
 name = "flate2"
@@ -873,9 +873,9 @@ checksum = "db13adb97ab515a3691f56e4dbab09283d0b86cb45abd991d8634a9d6f501760"
 
 [[package]]
 name = "libc"
-version = "0.2.161"
+version = "0.2.162"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8e9489c2807c139ffd9c1794f4af0ebe86a828db53ecdc7fea2111d0fed085d1"
+checksum = "18d287de67fe55fd7e1581fe933d965a5a9477b38e949cfa9f8574ef01506398"
 
 [[package]]
 name = "linux-raw-sys"
@@ -1213,8 +1213,8 @@ dependencies = [
 
 [[package]]
 name = "rsourcequery"
-version = "0.4.1"
-source = "git+https://github.com/jack-avery/rsourcequery.git?rev=c244ec3#c244ec3151ad2cbe610ff84465a0376de274dfda"
+version = "0.4.2"
+source = "git+https://github.com/jack-avery/rsourcequery.git?rev=8e0aee5#8e0aee53553bfe527799631850958b1137347c27"
 dependencies = [
  "bitvec",
  "log",
@@ -1516,7 +1516,7 @@ dependencies = [
 [[package]]
 name = "sourcon"
 version = "0.1.0"
-source = "git+https://github.com/crescentrose/sourcon.git?rev=d4b5786#d4b57865d9830761f4f0151582e79db1b04cb52d"
+source = "git+https://github.com/crescentrose/sourcon.git?rev=12646f8#12646f807fbb366b293722fbf44a2a2c523c83c2"
 dependencies = [
  "log",
  "thiserror",
@@ -1621,9 +1621,9 @@ checksum = "55937e1799185b12863d447f42597ed69d9928686b8d88a1df17376a097d8369"
 
 [[package]]
 name = "tempfile"
-version = "3.13.0"
+version = "3.14.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f0f2c9fc62d0beef6951ccffd757e241266a2c833136efbe35af6cd2567dca5b"
+checksum = "28cce251fcbc87fac86a866eeb0d6c2d536fc16d06f184bb61aeae11aa4cee0c"
 dependencies = [
  "cfg-if",
  "fastrand",
@@ -1695,9 +1695,9 @@ dependencies = [
 
 [[package]]
 name = "tokio"
-version = "1.41.0"
+version = "1.41.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "145f3413504347a2be84393cc8a7d2fb4d863b375909ea59f2158261aa258bbb"
+checksum = "22cfb5bee7a6a52939ca9224d6ac897bb669134078daa8735560897f69de4d33"
 dependencies = [
  "backtrace",
  "bytes",
