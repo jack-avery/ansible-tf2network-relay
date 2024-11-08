@@ -3,9 +3,9 @@
 all: build
 
 build:
-	nix build '.#packages.x86_64-linux.x86_64-linux.image'
+	nix build ".#x86_64-linux.image"
 	docker load -i result
-	nix build '.#packages.x86_64-linux.aarch64-linux.image'
+	nix build ".#aarch64-linux.image"
 	docker load -i result
 
 push:
