@@ -105,7 +105,7 @@
           };
         in {
           image = pkgs.dockerTools.buildImage {
-            name = "ansible-tf2network-relay";
+            name = "jackavery/ansible-tf2network-relay";
             tag = "latest";
             created = "now";
 
