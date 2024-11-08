@@ -40,3 +40,8 @@ services:
     volumes:
       - /path/to/your/manifest.yml:/manifest.yml
 ```
+
+## Building
+
+This image uses [Nix](https://nixos.org) as a build tool.
+You can still get a raw binary with `cargo build --release` and make your own Dockerfile.
