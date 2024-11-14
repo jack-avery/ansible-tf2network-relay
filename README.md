@@ -5,7 +5,7 @@
 Relay bot for use with [ansible-tf2network](https://github.com/jack-avery/ansible-tf2network).
 
 This only facilitates Discord to TF2 message relaying and the `/rcon` command,
-and is usually paired with a plugin for relaying from the server.
+and is dependent on [this SourceMod plugin](https://github.com/jack-avery/ansible-tf2network/blob/main/roles/sourcemod/files/addons/sourcemod/scripting/discord_relay.sp) for displaying messages.
 
 ## Setup
 
